@@ -52,7 +52,7 @@ const getSalario = id => {
 
         (salario)
         ? resolve(salario)
-        : reject (` (SALARIO) No existe empleado con id ${id} o no tiene salario cargado en nuestra base`)
+        : reject (`No existe un salario con id ${id}`)
     })
 }
 
@@ -69,3 +69,18 @@ const id = 1444;
 // .then ( salario => console.log(salario))
 // .catch( err => console.log(err))
 
+
+
+
+
+////// PROMESAS EN CADENA ///////////////////////////////////////////////////
+
+let nombre; 
+
+getEmpleado(id)
+    .then (empleado => {
+        nombre = empleado
+        return getSalario(id)
+    })
+    .then (salario => console.log(`El empleado ${nombre} tiene un salario de ${salario}$`))
+    .catch (err => console.log(err))
